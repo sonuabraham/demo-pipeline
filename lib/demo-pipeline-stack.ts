@@ -31,5 +31,17 @@ export class DemoPipelineStack extends cdk.Stack {
         env: { account: "902391215980", region: "us-east-1" },
       })
     );
+
+    const waveprd = pipeline.addWave("PRD");
+    waveprd.addStage(
+      new DemoPipelineAppStage(this, "PRD-SG", {
+        env: { account: "902391215980", region: "us-east-1" },
+      })
+    );
+    waveprd.addStage(
+      new DemoPipelineAppStage(this, "DR-KR", {
+        env: { account: "902391215980", region: "us-east-1" },
+      })
+    );
   }
 }
